@@ -1,0 +1,46 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "2b3d6d6ec4f4a479dea2607c220bc34e"
+name = "Better Web Pixel Anayltics"
+handle = "better-web-pixel-anayltics-1"
+application_url = "https://here-arg-roads-ended.trycloudflare.com"
+embedded = true
+
+[build]
+include_config_on_deploy = true
+automatically_update_urls_on_dev = true
+
+[webhooks]
+api_version = "2024-04"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "/webhooks/app/uninstalled"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products,read_products,write_customers,read_customers,write_orders,read_orders,write_pixels,read_pixels,read_customer_events"
+
+[auth]
+redirect_urls = [
+  "https://here-arg-roads-ended.trycloudflare.com/auth/callback",
+  "https://here-arg-roads-ended.trycloudflare.com/auth/shopify/callback",
+  "https://here-arg-roads-ended.trycloudflare.com/api/auth/callback"
+]
+
+[pos]
+embedded = false
+
+[embedded_app]
+permissions = [
+  "allow-scripts",
+  "allow-forms",
+  "allow-same-origin",
+  "allow-popups",
+  "allow-modals"
+]
+
+[[extensions]]
+type = "web_pixel_extension"
+name = "better-web-pixle-analytics"
+handle = "better-web-pixle-analytics"

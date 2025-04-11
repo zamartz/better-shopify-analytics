@@ -1,0 +1,48 @@
+type = "web_pixel_extension"
+name = "better-web-pixle-analytics"
+handle = "better-web-pixle-analytics"
+runtime_context = "strict"
+
+# Add customer privacy settings which are required for web pixels
+[customer_privacy]
+analytics = true
+marketing = true
+preferences = false
+sale_of_data = "enabled"
+
+[[metafields]]
+namespace = "better-analytics"
+key = "settings"
+description = "Settings for Better Analytics"
+
+[capabilities]
+network_access = true
+api_access = true
+block_progress = true
+browser_cookies_access = true
+use_customer_events = true
+
+[settings]
+type = "object"
+
+[settings.fields.ga4AccountId]
+type = "single_line_text_field"
+name = "Google Analytics 4 Account ID"
+description = "Enter your Google Analytics 4 Account ID (G-XXXXXXXX)"
+required = true
+
+[javascript]
+entry_point = "src/index.js"
+
+[targeting]
+pages = ["ALL"]
+
+[customer_event_targets]
+connection_check = true
+page_view = true
+cart_viewed = true
+checkout_completed = true
+checkout_started = true
+collection_viewed = true
+product_viewed = true
+search_submitted = true 

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Test Content</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    button {
+      padding: 8px 16px;
+      background: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h2>Iframe Content</h2>
+  <p>This is the content loaded inside the iframe. The following features should work if sandbox permissions are set correctly:</p>
+  
+  <button id="run-script">Run JavaScript</button>
+  <button id="open-popup">Open Popup</button>
+  <button id="storage-test">Test localStorage</button>
+  
+  <div class="result" id="result">Results will appear here</div>
+  
+  <script>
+    document.getElementById('run-script').addEventListener('click', function() {
+      document.getElementById('result').textContent = 'JavaScript is working! ' + new Date().toString();
+    });
+    
+    document.getElementById('open-popup').addEventListener('click', function() {
+      try {
+        const popup = window.open('about:blank', 'popup', 'width=400,height=300');
+        if (popup) {
+          popup.document.write('<h2>Popup opened successfully!</h2>');
+          document.getElementById('result').textContent = 'Popup was opened successfully';
+        } else {
+          document.getElementById('result').textContent = 'Popup blocked or not allowed by sandbox';
+        }
+      } catch (e) {
+        document.getElementById('result').textContent = 'Error opening popup: ' + e.message;
+      }
+    });
+    
+    document.getElementById('storage-test').addEventListener('click', function() {
+      try {
+        localStorage.setItem('test', 'test-value-' + Date.now());
+        const retrieved = localStorage.getItem('test');
+        document.getElementById('result').textContent = 'localStorage works! Stored and retrieved: ' + retrieved;
+      } catch (e) {
+        document.getElementById('result').textContent = 'localStorage error: ' + e.message;
+      }
+    });
+  </script>
+</body>
+</html> 

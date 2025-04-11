@@ -1,0 +1,40 @@
+/* Basic styles */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f6f6f7;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  color: #212b36;
+}
+
+button {
+  cursor: pointer;
+}
+
+input[type="text"], input[type="number"], select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* For Shopify embedded app */
+iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+/* Add allow-scripts to frames - this won't actually work since CSS can't modify sandbox attributes,
+   but we'll add the App Bridge fix in JavaScript */
+iframe[sandbox] {
+  sandbox: allow-scripts allow-same-origin allow-forms;
+} 
